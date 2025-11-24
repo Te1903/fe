@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Gu22 Coffee</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* ===== HOME COFFEE MODERN ===== */
+    body.home-page {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    /* Thanh trên cùng */
+    .home-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 40px;
+      gap: 20px;
+      box-sizing: border-box;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(90deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2));
+      color: #fff;
+    }
+
+    .home-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .home-logo-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      background: #ffb703;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      color: #2b2b2b;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    .home-logo-text-main {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .home-logo-text-sub {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    /* Ô search ở giữa */
+    .home-search-wrap {
+      flex: 1;
+      max-width: 520px;
+    }
+
+    .home-search {
+      width: 100%;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.96);
+    }
+
+    .home-top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .home-top-btn {
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 13px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      transition: 0.2s;
+      font-weight: 500;
+    }
+
+    .home-top-btn.primary {
+      background: #007bff;
+      color: #fff;
+    }
+    .home-top-btn.primary:hover {
+      background: #005fcc;
+    }
+
+    .home-top-btn.ghost {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .home-top-btn.ghost:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* Vùng hero ở giữa */
+    .home-hero-wrap {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 32px 16px 40px;
+      box-sizing: border-box;
+    }
+
+    .home-hero-card {
+      max-width: 520px;
+      width: 100%;
+      padding: 32px 40px 30px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      text-align: center;
+    }
+
+    .home-hero-title {
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    .home-hero-sub {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 24px;
+    }
+
+    .home-hero-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .home-hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .home-hero-btn.login {
+      background: #007bff;
+      color: #fff;
+      width: 100%;
+      justify-content: center;
+    }
+    .home-hero-btn.login:hover {
+      background: #005fcc;
+    }
+
+    .home-hero-btn.menu {
+      background: #f3f4f6;
+      color: #111827;
+      width: 100%;
+      justify-content: center;
+      border: 1px solid #e5e7eb;
+    }
+    .home-hero-btn.menu:hover {
+      background: #e5e7eb;
+    }
+
+    .home-hero-admin {
+      margin-top: 16px;
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .home-hero-admin a {
+      color: #4f46e5;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .home-hero-admin a:hover {
+      text-decoration: underline;
+    }
+
+    .home-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #f97316;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+
+    .home-hero-note {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .home-topbar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px 16px 12px;
+      }
+      .home-search-wrap {
+        order: 3;
+        max-width: none;
+      }
+      .home-top-actions {
+        order: 2;
+        justify-content: flex-start;
+      }
+      .home-hero-card {
+        padding: 24px 18px 22px;
+      }
+      .home-hero-title {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body class="home-page">
+  <!-- Thanh trên cùng -->
+  <header class="home-topbar">
+    <div class="home-brand">
+      <div class="home-logo-circle">Gu</div>
+      <div>
+        <div class="home-logo-text-main">Gu22 Coffee</div>
+        <div class="home-logo-text-sub">Order tại bàn bằng QR • Nhanh – Gọn – Chill</div>
+      </div>
+    </div>
+
+    <div class="home-search-wrap">
+      <input class="home-search" placeholder="Tìm món uống yêu thích (cà phê, trà, bánh...)">
+    </div>
+
+    <div class="home-top-actions">
+      <a href="login.html" class="home-top-btn primary">🔐 Đăng nhập</a>
+      <a href="menu.html" class="home-top-btn ghost">🍽 Xem menu</a>
+      <a href="admin.html" class="home-top-btn ghost">⚙ Quản lý menu</a>
+    </div>
+  </header>
+
+  <!-- Khung chính ở giữa -->
+  <section class="home-intro">
+    <div class="intro-content">
+        <h2> Gu22 Coffee</h2>
+        <p class="sub-desc">Không gian chill – Đặt món QR – Phục vụ nhanh chóng</p>
+    </div>
+
+    <h3  class="sub-title">Món nổi bật</h3>
+
+    <div class="featured-grid">
+        <div class="feat-item">
+            <img src="https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg">
+            <p>Matcha Latte</p>
+        </div>
+        <div class="feat-item">
+            <img src="https://product.hstatic.net/200000791069/product/lord-50_5221e714bef5444aaab6759e2a219146_master.jpg">
+            <p>Trà đào cam sả</p>
+        </div>
+        <div class="feat-item">
+            <img src="https://cdn.tgdd.vn/2021/07/CookProduct/khoai-tay-chien-bao-nhieu-calo-an-khoai-lang-hay-khoai-tay-chien-tot-hon-00-1200x676.jpg">
+            <p>Khoai tây chiên</p>
+        </div>
+        <div class="feat-item">
+            <img src="https://monngonmoingay.com/wp-content/uploads/2024/08/cach-lam-banh-flan-bang-noi-chien-khong-dau-1-1.jpg">
+            <p>Bánh Flan</p>
+        </div>
+            <div class="feat-item">
+        <img src="https://haisanloccantho.com/wp-content/uploads/2024/11/mi-cay-hai-san.jpg">
+        <p>Mỳ cay hải sản</p>
+    </div>
+    <div class="feat-item">
+        <img src="https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/2/19/cach-lam-nuoc-cam-ep-ngon-va-thom-ket-hop-voi-le-va-gung-5-1645248090817401855254.jpg">
+        <p>Nước ép cam</p>
+    </div>
+    <div class="feat-item">
+        <img src="https://www.huongnghiepaau.com/wp-content/uploads/2019/07/banh-bong-lan-pho-mai-dai-loan.jpg">
+        <p>Bông lan phô mai</p>
+    </div>
+    <div class="feat-item">
+        <img src="https://cdn.loveandlemons.com/wp-content/uploads/2023/06/iced-matcha-latte.jpg">
+        <p>Gu22 Special</p>
+    </div>
+    <div class="feat-item">
+    <img src="https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxTa1FGKFtQf5Tglcd8_Mg7rWS_SmebRVr6wB9gju6Y7r8TqgYgir_CRD4ssZEwYezsvc_H_Ef0l5W6TQzOdUblO30EfDSxuO54qVM0MniIBzpYWZ6DK_5INES5ADMRorul5P5z=s1360-w1360-h1020-rw">
+    <p>Buger nhà Gu</p>
+</div>
+<div class="feat-item">
+    <img src="data:image/jpeg;base64,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">
+    <p>Sữa Chua Dưa Lưới  </p>
+</div>
+<div class="feat-item">
+    <img src="https://bizweb.dktcdn.net/100/004/714/products/cach-lam-tra-sua-thai-xanh-1.jpg?v=1686650228813">
+    <p>Trà sữa thái xanh  </p>
+</div>
+<div class="feat-item">
+    <img src="https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxXv15dTf6gh3JGB3NvqJJw-PW0Vi1YM3fkPczW-D52oX6s4k8ehWORgLd4VCYBkLUZNK0bBt-CMZ3qZi3QY1VPTGw5LJ7snamw22GMGs1ZMYurSMWSlABp5SWH5QAjWmqzvgo=s1360-w1360-h1020-rw">
+    <p>Cơm Sườn Nhà Gu  </p>
+</div>
+  
+    </div>
+
+    <div class="cta-row">
+        <a href="login.html" class="btn-primary">Quản lý / Thu ngân</a>
+        <a href="menu.html?table=demo" class="btn-secondary">Xem Menu</a>
+    </div>
+</section>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Quản Lý Menu</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo">Quản lý Menu</div>
+    <a href="index.html">🏠 Trang chủ</a>
+  </header>
+
+  <div class="page-container">
+    <h2>Danh sách món ăn</h2>
+    <button class="btn-primary" onclick="openMenuModal('add')">➕ Thêm món mới</button>
+
+    <div id="menu-admin-grid" class="menu-grid"></div>
+  </div>
+
+  <!-- Modal -->
+  <div id="menu-modal" class="modal">
+    <div class="modal-content">
+      <h3 id="menu-modal-title">Thêm / Sửa món</h3>
+
+      <form id="menu-form">
+        <label>Tên món</label>
+        <input id="menu-name" required>
+
+        <label>Giá</label>
+        <input id="menu-price" type="number" required>
+
+        <label>Loại món</label>
+        <select id="menu-category">
+          <option value="cafe">Cà phê</option>
+          <option value="tra">Trà trái cây</option>
+          <option value="trasua">Trà sữa</option>
+          <option value="nuocep">Nước ép</option>
+          <option value="banh">Bánh ngọt</option>
+          <option value="monno">Món no</option>
+          <option value="snack">Ăn vặt</option>
+        </select>
+
+        <label>Hình ảnh URL</label>
+        <input id="menu-img" placeholder="https://... ">
+
+        <label>Mô tả</label>
+        <textarea id="menu-desc"></textarea>
+
+        <div class="modal-actions">
+          <button type="submit" class="btn-primary">Lưu</button>
+          <button type="button" onclick="closeMenuModal()">Hủy</button>
+        </div>
+        <div id="menu-error" class="error-text"></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", () => renderAdminMenuGrid());</script>
+</body>
+</html>

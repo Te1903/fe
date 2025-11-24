@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>QR-Order • Bếp</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">QR-Order • Bếp</div>
+      <div><a href="index.html">🏠 Trang chủ </a></div>
+    </header>
+
+    <main class="card">
+      <h2>Đơn hàng (Bếp)</h2>
+      <div id="orders-list"></div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // gọi render bếp khi trang load
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof renderKitchenPage === 'function') renderKitchenPage();
+    });
+  </script>
+</body>
+</html>

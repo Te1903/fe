@@ -1,0 +1,94 @@
+  <!DOCTYPE html>
+  <html lang="vi">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý Menu - Gu22 Coffee</title>
+  <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body class="admin-body">
+
+  <div class="container">
+      <header class="header">
+          <h2 class="logo">📋 Quản lý Menu</h2>
+          <a href="index.html" class="btn-primary">🏠 Trang chủ</a>
+      </header>
+
+  <button class="btn-add" onclick="openMenuModal('add')">+ Thêm món</button>
+
+      <div id="admin-menu" class="menu-grid"></div>
+  </div>
+
+
+  <script src="app.js"></script>
+  </body>
+  </html>
+  <!-- ==================== MODAL THÊM / SỬA MÓN ==================== -->
+  <div id="menu-modal" class="modal">
+    <div class="modal-content">
+      <h3 id="menu-modal-title">Thêm món mới</h3>
+
+      <form onsubmit="submitMenuForm(event)">
+        <label>Tên món:</label>
+        <input type="text" id="menu-name" required>
+
+        <label>Giá món (VND):</label>
+        <input type="number" id="menu-price" min="1000" step="1000" required>
+
+        <label>Danh mục:</label>
+        <select id="menu-category">
+          <option value="cafe">Cà phê</option>
+          <option value="tra">Trà trái cây</option>
+          <option value="trasua">Trà sữa</option>
+          <option value="nuocep">Nước ép</option>
+          <option value="banh">Bánh ngọt</option>
+          <option value="monno">Món no</option>
+          <option value="snack">Ăn vặt</option>
+        </select>
+
+        <label>Ảnh (URL):</label>
+        <input type="text" id="menu-img" placeholder="http://...">
+
+        <label>Mô tả:</label>
+        <textarea id="menu-desc"></textarea>
+
+        <p id="menu-error" style="color:red;margin-top:6px;"></p>
+
+        <div class="modal-actions">
+          <button type="button" onclick="closeMenuModal()">Hủy</button>
+          <button type="submit" class="btn-primary">Lưu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== CSS Modal ===== -->
+  <style>
+  .modal {
+    position: fixed; top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.4);
+    display:none; justify-content:center; align-items:center;
+    z-index:1000;
+  }
+  .modal-content {
+    background:#fff;
+    width:420px;
+    padding:20px;
+    border-radius:12px;
+    animation:show .2s ease;
+  }
+  @keyframes show { from{opacity:0; transform:translateY(-10px)} }
+  .modal-content input, .modal-content select, .modal-content textarea {
+    width:100%; margin:6px 0 12px; padding:8px;
+    border-radius:6px; border:1px solid #ccc;
+  }
+  .modal-actions {
+    display:flex; justify-content:flex-end; gap:10px;
+  }
+  .btn-primary {
+    background:#007bff; color:white; border:none;
+    padding:8px 16px; border-radius:8px; cursor:pointer;
+  }
+  </style>
