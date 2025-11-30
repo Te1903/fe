@@ -66,8 +66,11 @@ function runPageScripts(page) {
     }
 
     if (page === "tables.html") {
-        import("../../js/tables.js");
-    }
+    import("../../js/tables-admin.js").then(() => {
+        console.log("tables-admin.js loaded");
+    });
+}
+
 
     if (page === "dashboard.html") {
         import("../../js/admin.js");

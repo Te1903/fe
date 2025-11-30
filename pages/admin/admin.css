@@ -428,3 +428,104 @@ body{margin:0;font-family:Inter, Arial, sans-serif;background:#fafafa}
     border-radius: 6px;
     cursor: pointer;
 }
+
+/* === FIX DROPDOWN NẰM NGOÀI TOPBAR === */
+.admin-topbar {
+    position: relative;
+    z-index: 999;
+}
+
+/* Container avatar */
+.user-right {
+    position: relative;
+    margin-left: 15px;
+}
+
+/* Icon avatar */
+.user-avatar {
+    background: white;
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Menu dropdown */
+.user-menu {
+    position: absolute;
+    top: 45px;         /* kiểm soát cao thấp */
+    right: 0px;        /* đẩy sát avatar */
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    padding: 10px 0;
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn .2s ease;
+}
+
+.user-menu a {
+    padding: 10px 16px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-menu a:hover {
+    background: #f3f4f6;
+}
+
+.user-menu.hide {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.table-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.table-item {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.table-item h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.qr-box {
+    margin: 10px auto;
+    padding: 10px;
+    width: 140px;
+    height: 140px;
+    background: #f4f4f4;
+    border-radius: 10px;
+}
+
+.btn-download {
+    margin-top: 10px;
+    background: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.btn-download:hover {
+    background: #0056b3;
+}

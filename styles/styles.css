@@ -906,3 +906,157 @@ body.login-body {
 .cat-chip.active {
   background: rgba(255,255,255,0.7);
 }
+.user-right {
+    position: relative !important;
+    z-index: 9999999 !important;
+    pointer-events: auto !important;
+}
+
+
+.user-avatar {
+    background: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.user-menu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.15);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-menu a {
+    padding: 6px 10px;
+    text-decoration: none;
+    color: #333;
+}
+.user-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;        /* khoảng cách icon – chữ */
+    padding: 6px 12px;
+    white-space: nowrap; /* không cho xuống dòng */
+}
+
+.user-menu.hide {
+    display: none;
+}
+/* ================= ACCOUNT POPUP ================= */
+.account-popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+}
+
+.account-popup.hide {
+    display: none;
+}
+
+.account-box {
+    width: 420px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+.account-box h3 {
+    margin-bottom: 14px;
+    font-weight: 700;
+}
+
+.account-box label {
+    margin-top: 10px;
+    display: block;
+    font-size: 14px;
+    color: #444;
+}
+
+.account-box input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 4px;
+    background: #efefef;
+}
+
+.acc-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.btn-close {
+    padding: 8px 14px;
+    background: #007bff;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.user-right {
+    position: relative;
+    z-index: 9999999; /* bắt click */
+}
+
+.user-avatar {
+    background: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.user-menu {
+    position: absolute;
+    right: 0;
+    top: 48px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.25);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-menu.hide {
+    display: none;
+}
+.user-avatar {
+    position: relative;
+    z-index: 999999;
+}
+/*  */
+/* ==== FIX AVATAR KHÔNG CLICK ĐƯỢC ==== */
+.user-avatar {
+    position: relative !important;
+    z-index: 999999 !important;
+    pointer-events: auto !important;
+}
+
+.user-menu {
+    position: absolute;
+    right: 0;
+    top: 45px;
+    z-index: 999999 !important;
+}
+header, .home-topbar {
+    position: relative !important;
+    z-index: 99999 !important;
+}
+
+

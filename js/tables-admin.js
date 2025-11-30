@@ -1,41 +1,67 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const tableList = document.getElementById("tableList");
-    const orderItems = document.getElementById("orderItems");
+const TABLE_KEY = "qr_table_data";
 
-    const TOTAL_TABLES = 20;
+// Nếu chưa có dữ liệu → tạo ví dụ
+if (!localStorage.getItem(TABLE_KEY)) {
+    localStorage.setItem(TABLE_KEY, JSON.stringify({
+        tables: [
+            { id: 1, name: "Bàn 1" },
+            { id: 2, name: "Bàn 2" },
+            { id: 3, name: "Bàn 3" },
+            { id: 4, name: "Bàn 4" }
+        ]
+    }));
+}
 
-    // load bàn
-    for (let i = 1; i <= TOTAL_TABLES; i++) {
-        let div = document.createElement("div");
-        div.className = "table-card";
-        div.innerText = "Bàn " + i;
+function loadTables() {
+    const data = JSON.parse(localStorage.getItem(TABLE_KEY));
+    const tables = data.tables || [];
+    const list = document.getElementById("tableList");
 
-        div.onclick = () => showOrder(i, div);
+    list.innerHTML = "";
 
-        tableList.appendChild(div);
-    }
+tables.forEach(tb => {
+    list.innerHTML += `
+        <div class="table-item">
+            <h3>${tb.name}</h3>
 
-    function showOrder(tableNumber, element) {
-        document.querySelectorAll(".table-card").forEach(t => t.classList.remove("active"));
-        element.classList.add("active");
+            <div id="qr-${tb.id}" class="qr-box"></div>
 
-        let data = JSON.parse(localStorage.getItem("orders")) || {};
-
-        if (!data[tableNumber]) {
-            orderItems.innerHTML = "<p>🟦 Chưa có món nào</p>";
-            return;
-        }
-
-        let html = "";
-        data[tableNumber].forEach(item => {
-            html += `
-                <div class="order-line">
-                    <strong>${item.name}</strong> x ${item.qty}
-                    <span>${item.price * item.qty} đ</span>
-                </div>
-            `;
-        });
-
-        orderItems.innerHTML = html;
-    }
+            <button class="btn-download" onclick="downloadQR(${tb.id})">
+                Tải QR
+            </button>
+        </div>
+    `;
 });
+
+// CHỜ DOM RENDER XONG RỒI MỚI TẠO QR
+setTimeout(() => {
+    tables.forEach(tb => {
+        const box = document.getElementById(`qr-${tb.id}`);
+        if (!box) return;
+
+        box.innerHTML = "";
+
+        new QRCode(box, {
+            text: `http://127.0.0.1:5500/order?table=${tb.id}`,
+            width: 130,
+            height: 130
+        });
+    });
+}, 50);
+
+
+}
+
+function downloadQR(id) {
+    const img = document.querySelector(`#qr-${id} img`);
+    const url = img.src;
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `QR-Ban-${id}.png`;
+    a.click();
+}
+
+
+loadTables();
+    

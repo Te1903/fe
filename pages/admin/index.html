@@ -3,7 +3,13 @@
 <head>
 <meta charset="utf-8">
 <title>Admin • Gu22 Coffee</title>
+
 <link rel="stylesheet" href="admin.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 <body class="admin-page">
 
@@ -12,26 +18,53 @@
     <button class="hamburger" id="hamburger">☰</button>
     <div class="admin-brand">Gu22 • Quản trị</div>
   </div>
+
   <div class="admin-right">
     <div class="admin-user">Xin chào, <span id="adminName">Admin</span></div>
+  </div>
+
+  <!-- ACCOUNT DROPDOWN -->
+  <div class="user-right">
+      <button id="userMenuBtn" class="user-avatar">
+          <i class="fa fa-user"></i>
+      </button>
+
+      <div id="userMenu" class="user-menu hide">
+          <a href="account.html">👤 Tài khoản</a>
+          <a href="change-pass.html">🔐 Đổi mật khẩu</a>
+          <a href="../login/index.html">🚪 Đăng xuất</a>
+      </div>
   </div>
 </header>
 
 <aside id="sidebar" class="sidebar">
 <nav>
     <a class="nav-link" data-page="dashboard.html"> 📊 Doanh thu</a>
-    <a class="nav-link" data-page="menu-list.html"> 🍽  Quản lý thực đơn</a>
+    <a class="nav-link" data-page="menu-list.html"> 🍽 Quản lý thực đơn</a>
     <a class="nav-link" data-page="staff-list.html">👥 Nhân viên</a>
     <a class="nav-link" data-page="tables.html">📋 Quản lý bàn</a>
-    <a class="nav-link" data-page="../login/index.html">🚪 Đăng xuất </a>
-    <a class="nav-link" data-page="account.html">👤 Tài khoản</a>
 </nav>
 </aside>
 
-
-<!-- nơi load nội dung động -->
 <main id="appContent" class="admin-main"></main>
 
 <script src="../../js/admin-router.js"></script>
+
+<script>
+const btn = document.getElementById("userMenuBtn");
+const menu = document.getElementById("userMenu");
+
+btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    menu.classList.toggle("hide");
+});
+
+document.addEventListener("click", () => {
+    menu.classList.add("hide");
+});
+</script>
+
 </body>
 </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="../../js/tables-admin.js"></script>
