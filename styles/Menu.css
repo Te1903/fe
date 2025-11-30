@@ -1,0 +1,21 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(230px,1fr));
+  gap: 18px;
+}
+
+.menu-card {
+  background: rgba(255,255,255,0.22);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: .25s;
+}
+.menu-card:hover {
+  transform: translateY(-6px);
+}
+
+.menu-price {
+  color: #007bff;
+  font-weight: 700;
+}

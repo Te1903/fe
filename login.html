@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập • Gu22 Coffee</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="login-body">
+
+  <div class="login-box">
+    <h2 class="login-title">Đăng nhập</h2>
+    <p class="login-sub">Dành cho quản lý / thu ngân</p>
+
+    <div class="login-group">
+      <input id="username" placeholder="Tài khoản">
+      <input id="password" type="password" placeholder="Mật khẩu">
+    </div>
+
+    <button class="btn-login" onclick="login()">Đăng nhập</button>
+
+    <!-- sửa ID đúng -->
+    <div id="login-error" class="login-error"></div>
+  </div>
+
+<script>
+function login() {
+    const user = document.getElementById("username").value.trim();
+    const pass = document.getElementById("password").value.trim();
+
+    if (user === "" || pass === "") {
+        document.getElementById("login-error").textContent = "⚠ Vui lòng điền đầy đủ thông tin!";
+        return;
+    }
+
+    // Demo user
+    if (user === "admin" && pass === "123") {
+        window.location.href = "admin.html";
+    } 
+    else if (user === "cashier" && pass === "123") {
+        window.location.href = "cashier.html";
+    } 
+    else if (user === "bep" && pass === "123") {
+        window.location.href = "kitchen.html";
+    } 
+    else {
+        document.getElementById("login-error").textContent = "❌ Sai tài khoản hoặc mật khẩu!";
+    }
+}
+</script>
+
+</body>
+</html>

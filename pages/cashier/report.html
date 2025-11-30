@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thu ngân • Báo cáo cuối ngày</title>
+
+    <link rel="stylesheet" href="../../styles/cashier.css">
+    <link rel="stylesheet" href="../../styles/report.css">
+</head>
+
+<body>
+
+<div class="cashier-container">
+
+    <header class="cashier-header">
+        <h2>📊 Báo cáo cuối ngày</h2>
+        <a href="cashier.html" class="back-btn">← Trở lại</a>
+    </header>
+
+    <!-- Bộ lọc -->
+    <div class="report-tools">
+        <label>Ngày báo cáo:
+            <input type="date" id="report-date">
+        </label>
+
+        <label>Người lập:
+            <input type="text" id="report-author" placeholder="Nhập tên thu ngân">
+        </label>
+
+        <button id="btn-load" class="btn-primary">Tải báo cáo</button>
+        <button id="btn-print" class="btn">In báo cáo</button>
+    </div>
+
+    <!-- Tổng thu chi -->
+    <section class="card">
+        <h3>Tổng kết thu chi</h3>
+
+        <div class="grid-4">
+            <div class="stat">
+                <div class="label">Tổng thu</div>
+                <div id="sum-revenue" class="value">0 ₫</div>
+            </div>
+            <div class="stat">
+                <div class="label">Tổng chi</div>
+                <div id="sum-cost" class="value">0 ₫</div>
+            </div>
+            <div class="stat">
+                <div class="label">Thu – Chi</div>
+                <div id="sum-profit" class="value">0 ₫</div>
+            </div>
+            <div class="stat">
+                <div class="label">Tổng đơn hàng</div>
+                <div id="sum-orders" class="value">0</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phương thức thanh toán -->
+    <section class="card">
+        <h3>Phương thức thanh toán</h3>
+
+        <table class="simple-table">
+            <thead>
+            <tr>
+                <th>Phương thức</th>
+                <th>Số đơn</th>
+                <th>Tổng tiền</th>
+            </tr>
+            </thead>
+            <tbody id="pay-method-body"></tbody>
+        </table>
+    </section>
+
+    <!-- Hủy món -->
+    <section class="card">
+        <h3>Hủy món</h3>
+
+        <table class="simple-table">
+            <tbody>
+            <tr>
+                <td>Số lượng hủy</td>
+                <td id="cancel-count">0</td>
+            </tr>
+            <tr>
+                <td>Giá trị hủy</td>
+                <td id="cancel-value">0 ₫</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Top món bán chạy -->
+    <section class="card">
+        <h3>Top món bán chạy</h3>
+
+        <table class="simple-table">
+            <thead>
+            <tr>
+                <th>Món</th>
+                <th>Số lượng</th>
+                <th>Doanh thu</th>
+            </tr>
+            </thead>
+            <tbody id="top-items-body"></tbody>
+        </table>
+    </section>
+
+</div>
+
+<script src="../../js/report.js"></script>
+</body>
+</html>

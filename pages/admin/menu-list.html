@@ -1,0 +1,108 @@
+<div class="menu-page">
+
+    <h2 class="menu-title">🍽 Quản lý thực đơn</h2>
+
+    <div class="menu-toolbar left-align">
+        <input id="searchMenu" type="text" class="menu-input" placeholder="Tìm món theo tên...">
+
+        <select id="filterCategory" class="menu-select">
+            <option value="all">Tất cả</option>
+            <option value="Cà phê">Cà phê</option>
+            <option value="Trà">Trà</option>
+            <option value="Sữa">Sữa</option>
+            <option value="Đồ ăn">Đồ ăn</option>
+        </select>
+
+        <button id="btnAdd" class="btn-primary">+ Thêm món mới</button>
+    </div>
+
+<table class="menu-table" style="width: 100%; margin-top: 15px; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th>Ảnh</th>
+            <th>Tên món</th>
+            <th>Giá</th>
+            <th>Danh mục</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+
+    <tbody id="menuBody"></tbody>
+</table>
+
+
+
+        <div class="modal-actions">
+            <button id="btnSave" class="btn-primary">Lưu</button>
+            <button id="btnClose" class="btn-secondary">Hủy</button>
+        </div>
+    </div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const APP_KEY = "qr_order_demo_v1";
+
+    const wrap = document.getElementById("menuGrid");
+    const search = document.getElementById("searchMenu");
+    const filter = document.getElementById("filterCategory");
+
+    function getMenu(){
+        const data = JSON.parse(localStorage.getItem(APP_KEY));
+        return data?.menu || [];
+    }
+
+    function formatVND(n){
+        return Number(n).toLocaleString("vi-VN") + " ₫";
+    }
+
+    function render(items){
+        wrap.innerHTML = items.map(m => `
+            <div class="admin-card">
+                <img src="${m.img}" />
+
+                <div class="admin-card-body">
+                    <div class="admin-name">${m.name}</div>
+                    <div class="admin-price">${formatVND(m.price)}</div>
+                    <div class="admin-cat">${m.category}</div>
+
+                    <button onclick="openMenuModal('edit', '${m.id}')">Sửa</button>
+                    <button onclick="deleteMenu('${m.id}')">Xóa</button>
+                </div>
+            </div>
+        `).join("");
+    }
+
+    function applyFilter(){
+        let items = getMenu();
+
+        const q = search.value.trim().toLowerCase();
+        if (q) items = items.filter(m => m.name.toLowerCase().includes(q));
+
+        const cat = filter.value;
+        if (cat !== "all") items = items.filter(m => m.category === cat);
+
+        render(items);
+    }
+
+    search.oninput = applyFilter;
+    filter.onchange = applyFilter;
+
+    applyFilter();
+});
+
+
+// ================= XOÁ MÓN =================
+function deleteMenu(id){
+    if (!confirm("Xóa món này?")) return;
+
+    const APP_KEY = "qr_order_demo_v1";
+    const data = JSON.parse(localStorage.getItem(APP_KEY));
+
+    data.menu = data.menu.filter(m => m.id != id);
+
+    localStorage.setItem(APP_KEY, JSON.stringify(data));
+    location.reload();
+}
+</script>

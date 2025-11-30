@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đăng nhập</title>
+
+  <link rel="stylesheet" href="../../styles/styles.css" />
+</head>
+
+<body class="login-page">
+
+    <div class="login-box">
+        <div class="login-title">Đăng nhập</div>
+        <div class="login-sub">Dành cho quản lý / thu ngân</div>
+
+        <div class="login-group">
+            <input type="text" placeholder="Tài khoản" id="username">
+            <input type="password" placeholder="Mật khẩu" id="password">
+        </div>
+            <button class="btn-login" onclick="handleLogin()">Đăng nhập</button>
+            <!-- Nút trở lại -->
+        <a href="../../index.html" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i> Trở lại
+        </a>
+
+    </div>
+
+  <script src="../../js/auth.js"></script>
+  <script>
+function login() {
+    const user = document.getElementById("username").value.trim();
+    const pass = document.getElementById("password").value.trim();
+
+    if (user === "" || pass === "") {
+        document.getElementById("login-error").textContent = "⚠ Vui lòng điền đầy đủ thông tin!";
+        return;
+    }
+
+    // Demo user
+    if (user === "admin" && pass === "123") {
+        window.location.href = "admin.html";
+    } 
+    else if (user === "cashier" && pass === "123") {
+        window.location.href = "cashier.html";
+    } 
+    else if (user === "bep" && pass === "123") {
+        window.location.href = "kitchen.html";
+    } 
+    else {
+        document.getElementById("login-error").textContent = "❌ Sai tài khoản hoặc mật khẩu!";
+    }
+}
+</script>
+
+</body>
+</html>
+

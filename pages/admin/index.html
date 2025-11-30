@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Admin • Gu22 Coffee</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-page">
+
+<header class="admin-topbar">
+  <div class="admin-left">
+    <button class="hamburger" id="hamburger">☰</button>
+    <div class="admin-brand">Gu22 • Quản trị</div>
+  </div>
+  <div class="admin-right">
+    <div class="admin-user">Xin chào, <span id="adminName">Admin</span></div>
+  </div>
+</header>
+
+<aside id="sidebar" class="sidebar">
+<nav>
+    <a class="nav-link" data-page="dashboard.html">📊 Bảng điều khiển</a>
+    <a class="nav-link" data-page="menu-list.html">🍽 Quản lý thực đơn</a>
+    <a class="nav-link" data-page="staff-list.html">👥 Nhân viên</a>
+    <a class="nav-link" data-page="tables.html">📋 Quản lý bàn</a>
+    <a class="nav-link" data-page="../login/index.html">🚪 Đăng xuất </a>
+</nav>
+</aside>
+
+
+<!-- nơi load nội dung động -->
+<main id="appContent" class="admin-main"></main>
+
+<script src="../../js/admin-router.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<div class="menu-page">
+  <h2 class="menu-title">👥 Quản lý nhân viên</h2>
+
+  <div class="menu-toolbar left-align">
+      <input id="searchStaff" type="text" class="menu-input" placeholder="Tìm nhân viên...">
+      <select id="filterRole" class="menu-select">
+          <option value="all">Tất cả</option>
+          <option value="admin">Quản trị</option>
+          <option value="cashier">Thu ngân</option>
+          <option value="staff">Nhân viên</option>
+      </select>
+      <button id="btnAddStaff" class="btn-primary">+ Thêm nhân viên</button>
+  </div>
+
+  <div class="table-wrap">
+      <table class="admin-table">
+          <thead>
+              <tr>
+                  <th>STT</th>
+                  <th>Tên nhân viên</th>
+                  <th>Tên đăng nhập</th>
+                  <th>Vai trò</th>
+                  <th>Trạng thái</th>
+                  <th>Hành động</th>
+              </tr>
+          </thead>
+          <tbody id="staffBody"></tbody>
+      </table>
+  </div>
+</div>
+
+<!-- MODAL STAFF -->
+<div id="staffModal" class="modal hide">
+  <div class="modal-body">
+      <h3 id="staffModalTitle">Thêm nhân viên</h3>
+
+      <label>Họ tên</label>
+      <input id="sName">
+
+      <label>Tên đăng nhập</label>
+      <input id="sUsername">
+
+      <label>Mật khẩu</label>
+      <input id="sPassword" type="password">
+
+      <label>Vai trò</label>
+      <select id="sRole">
+          <option value="admin">Quản trị</option>
+          <option value="cashier">Thu ngân</option>
+          <option value="staff">Nhân viên</option>
+      </select>
+
+      <label>Trạng thái</label>
+      <select id="sStatus">
+          <option value="active">Đang làm</option>
+          <option value="inactive">Nghỉ làm</option>
+      </select>
+
+      <div class="modal-actions">
+          <button id="btnSaveStaff" class="btn-primary">Lưu</button>
+          <button id="btnCloseStaff" class="btn-secondary">Hủy</button>
+      </div>
+  </div>
+</div>
+

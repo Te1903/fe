@@ -1,0 +1,36 @@
+body.home-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-topbar {
+  padding: 14px 40px;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(12px);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.home-search {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: none;
+  background: #fff;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+  gap: 18px;
+  padding: 20px;
+}
+
+.feat-item {
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}

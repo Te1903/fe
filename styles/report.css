@@ -1,0 +1,52 @@
+.card {
+    background: #fff;
+    padding: 18px;
+    margin-top: 16px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.stat {
+    padding: 16px;
+    background: #fafafa;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.stat .label {
+    color: #777;
+    font-size: 14px;
+}
+
+.stat .value {
+    margin-top: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.simple-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.simple-table th,
+.simple-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.back-btn {
+    padding: 6px 14px;
+    background: #ddd;
+    text-decoration: none;
+    color: #000;
+    border-radius: 6px;
+}
+    

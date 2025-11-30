@@ -1,0 +1,25 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  width: 100%;
+  font-family: Inter, system-ui;
+  overflow-x: hidden;
+}
+
+/* BACKGROUND DEFAULT */
+body {
+  background: url("https://i.imgur.com/KVq8Qqv.jpeg") center/cover fixed;
+}
+
+/* UNIVERSAL GLASS */
+.glass {
+  background: rgba(255,255,255,0.22);
+  border: 1px solid rgba(255,255,255,0.35);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.22);
+  border-radius: 18px;
+}

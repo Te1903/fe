@@ -1,0 +1,279 @@
+/* admin.css - cơ bản */
+:root{
+  --bg:#0b1220;
+  --glass: rgba(255,255,255,0.08);
+  --accent:#1976d2;
+  --muted:#6b7280;
+}
+
+/* reset */
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter, Arial, sans-serif;background:#fafafa}
+
+/* topbar */
+.admin-topbar{
+  position:fixed;left:0;right:0;top:0;height:56px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 16px;backdrop-filter:blur(6px);
+  background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.85));
+  border-bottom:1px solid rgba(0,0,0,0.05);z-index:999;
+}
+.admin-topbar .admin-left{display:flex;align-items:center;gap:12px}
+.hamburger{background:none;border:none;font-size:20px;cursor:pointer}
+.admin-brand{font-weight:700}
+
+/* sidebar */
+.sidebar{
+  position:fixed;left:0;top:56px;bottom:0;width:220px;background:#33373a;color:#fff;
+  padding:18px 10px;overflow:auto;
+}
+.sidebar .nav-link{
+  display:block;padding:12px 10px;border-radius:8px;color:#f5f5f5;text-decoration:none;margin-bottom:8px;
+}
+.sidebar .nav-link.active, .sidebar .nav-link:hover{
+  background:rgba(255,255,255,0.06);
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+}
+
+/* main content */
+.admin-main{
+  margin-left:220px;
+  padding:90px 28px 40px;
+  min-height:100vh;
+  background-image:url('../../images/bg-coffee.jpg');
+  background-size:cover;background-position:center;
+}
+
+/* page common */
+.menu-page{max-width:1200px;margin:0 auto}
+.menu-top{display:flex;gap:12px;align-items:center;margin-bottom:18px}
+.input{padding:10px 12px;border-radius:8px;border:1px solid #e5e7eb;background:#fff}
+.btn{padding:8px 12px;border-radius:8px;border:none;background:#ddd;cursor:pointer}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.danger{background:#e11d48;color:#fff}
+
+/* grid */
+.menu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.menu-card{background:#fff;border-radius:10px;box-shadow:0 6px 20px rgba(15,23,42,0.06);overflow:hidden}
+.card-media{height:150px;background:#fafafa;display:flex;align-items:center;justify-content:center}
+.card-media img{width:100%;height:100%;object-fit:cover}
+.card-body{padding:12px}
+.card-title{font-weight:700;margin-bottom:6px}
+.card-desc{color:var(--muted);font-size:13px;margin-bottom:10px}
+.card-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.price{color:#0ea5a0;font-weight:700}
+.status.on{color:green}
+.status.off{color:#b91c1c}
+.card-actions{display:flex;gap:8px}
+.card-actions .btn{padding:6px 10px;font-size:13px}
+
+/* modal */
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);z-index:2000}
+.modal.hidden{display:none}
+.modal-box{width:420px;background:#fff;padding:18px;border-radius:12px;box-shadow:0 20px 60px rgba(2,6,23,0.3)}
+.modal-box h3{margin-top:0}
+.modal-box label{display:block;margin:8px 0}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+
+/* responsive */
+@media (max-width:1000px){
+  .menu-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:720px){
+  .sidebar{width:64px}
+  .admin-main{margin-left:64px;padding:80px 12px}
+  .menu-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:420px){
+  .menu-grid{grid-template-columns:repeat(1,1fr)}
+}
+
+.menu-page {
+    padding: 20px 35px;
+    color: #090808;
+}
+
+.menu-title {
+    font-size: 26px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+.menu-toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.menu-input, .menu-select {
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #333;
+}
+
+.btn-primary {
+    background: #007bff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: #e1d9d9;
+    cursor: pointer;
+}
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.menu-card {
+    background: #ffffffdd;
+    border-radius: 14px;
+    padding: 14px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    backdrop-filter: blur(4px);
+}
+
+.menu-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.menu-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-edit {
+    background: #ffc107;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-delete {
+    background: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal.hide {
+    display: none;
+}
+
+.modal-body {
+    width: 420px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+.modal-body input,
+.modal-body textarea,
+.modal-body select {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-secondary {
+    background: #eee;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+/* Căn toolbar về bên trái */
+.menu-toolbar {
+    display: flex;
+    gap: 10px;
+    margin: 0;
+    padding-left: 0;
+    justify-content: flex-start; /* quan trọng */
+    align-items: center;
+}
+
+/* Nếu muốn sát mép trái hoàn toàn */
+.menu-page {
+    padding-left: 0;
+}
+
+.menu-title {
+    margin-left: 0 !important;   /* đẩy tiêu đề sát trái luôn */
+    text-align: left !important;
+}
+
+/* ONLY FIX IMAGE SIZE IN MENU-LIST (admin) */
+.menu-page .menu-card {
+    width: 170px !important;
+    margin: auto;
+}
+.table-wrap { margin-top: 20px; overflow-x: auto; }
+.admin-table { width: 100%; border-collapse: collapse; background: #fff; }
+.admin-table th, .admin-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+.admin-table th { background: #f3f4f6; }
+
+.table-list-admin {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.table-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    transition: .2s;
+}
+
+.table-card:hover {
+    transform: translateY(-4px);
+}
+
+.table-card.active {
+    background: #007bff;
+    color: #fff;
+}
+
+.order-box {
+    margin-top: 25px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thu ngân • Gu22 Coffee</title>
+    <link rel="stylesheet" href="../../styles/Cashier.css">
+    <script src="../../js/cashier.js" defer></script>
+</head>
+
+<body class="cashier-page">
+
+<h2> Thu ngân</h2>
+<p>Chọn bàn cần thanh toán</p>
+
+<div id="tableList" class="table-list"></div>
+
+
+    <!-- DANH SÁCH 50 BÀN -->
+    <div id="cashier-tables" class="tables-grid"></div>
+
+    <!-- POPUP HÓA ĐƠN -->
+    <div id="bill-popup" class="popup hide">
+        <div class="popup-box">
+
+            <h3>Hóa đơn bàn <span id="bill-table"></span></h3>
+
+            <div id="bill-items" class="bill-items"></div>
+
+            <div class="bill-total">
+                Tổng tiền: <b id="bill-total"></b>
+            </div>
+
+            <div class="bill-payment">
+                <label>Phương thức thanh toán:</label>
+                <select id="payment-method">
+                    <option value="cash">💵 Tiền mặt</option>
+                    <option value="bank">🏦 Chuyển khoản</option>
+                </select>
+            </div>
+
+            <div id="cash-area" class="cash-box">
+                <label>Tiền khách đưa:</label>
+                <input type="number" id="customer-money" placeholder="Nhập số tiền...">
+                <div class="change">
+                    Tiền thừa: <b id="change-amount">0 đ</b>
+                </div>
+            </div>
+
+            <div class="popup-actions">
+                <button class="btn-confirm" id="confirm-pay">Xác nhận thanh toán</button>
+                <button class="btn-close" onclick="closeBill()">Đóng</button>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
