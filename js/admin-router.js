@@ -55,12 +55,14 @@ async function loadPage(page) {
 function runPageScripts(page) {
 
     if (page === "menu-list.html") {
-        import("../../js/menu-admin.js")
-            .then(() => console.log("menu-admin.js loaded"));
+        import("../js/menu-admin.js").then(() => 
+            console.log("menu-admin.js loaded"));
     }
 
-    if (page === "staff.html") {
-        import("../../js/staff.js");
+    if (page === "staff-list.html") {
+        import("../../js/staff-admin.js").then(()=> {
+            console.log("Staff JS loaded");
+        });
     }
 
     if (page === "tables.html") {
@@ -70,6 +72,10 @@ function runPageScripts(page) {
     if (page === "dashboard.html") {
         import("../../js/admin.js");
     }
+    if (page === "account.html") {
+    import("../js/account.js");
+    }
+
 }
 
 // =============================

@@ -110,3 +110,21 @@ document.addEventListener("DOMContentLoaded", () => {
   initDemoData();
   updateBottomCart();
 });
+
+
+// ==========================
+// KHỞI TẠO DỮ LIỆU DEMO
+// ==========================
+function initDemoStaff() {
+    if (localStorage.getItem(STAFF_KEY)) return;
+
+    const demo = {
+        staff: [
+            { id: 101, name: "Nguyễn Văn A", username: "nvA", password: "123456", role: "admin", status: "active" },
+            { id: 102, name: "Trần Thị B", username: "nvB", password: "123456", role: "staff", status: "active" },
+            { id: 103, name: "Phạm Văn C", username: "nvC", password: "123456", role: "staff", status: "inactive" }
+        ]
+    };
+
+    localStorage.setItem(STAFF_KEY, JSON.stringify(demo));
+}

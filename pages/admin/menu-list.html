@@ -7,46 +7,83 @@
 
         <select id="filterCategory" class="menu-select">
             <option value="all">Tất cả</option>
-            <option value="Cà phê">Cà phê</option>
-            <option value="Trà">Trà</option>
-            <option value="Sữa">Sữa</option>
-            <option value="Đồ ăn">Đồ ăn</option>
+            <option value="cafe">Cà phê</option>
+            <option value="tra">Trà trái cây</option>
+            <option value="trasua">Trà sữa</option>
+            <option value="nuocep">Nước ép</option>
+            <option value="banh">Bánh ngọt</option>
+            <option value="monno">Món no</option>
+            <option value="snack">Ăn vặt</option>
         </select>
 
-        <button id="btnAdd" class="btn-primary">+ Thêm món mới</button>
+        <button id="btnAdd" class="btn-primary" onclick="openMenuModal('add')">
+            + Thêm món mới
+        </button>
     </div>
 
-<table class="menu-table" style="width: 100%; margin-top: 15px; border-collapse: collapse;">
-    <thead>
-        <tr>
-            <th>Ảnh</th>
-            <th>Tên món</th>
-            <th>Giá</th>
-            <th>Danh mục</th>
-            <th>Trạng thái</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
 
-    <tbody id="menuBody"></tbody>
-</table>
+    <!-- ===================== MODAL ===================== -->
+    <div id="menuModal" class="menu-modal">
+        <div class="menu-modal-box">
+            <h3 id="modalTitle">Thêm món mới</h3>
 
+            <label>Tên món</label>
+            <input id="mName" type="text">
 
+            <label>Giá</label>
+            <input id="mPrice" type="number">
 
-        <div class="modal-actions">
-            <button id="btnSave" class="btn-primary">Lưu</button>
-            <button id="btnClose" class="btn-secondary">Hủy</button>
+            <label>Danh mục</label>
+            <select id="mCategory">
+                <option value="cafe">Cà phê</option>
+                <option value="tra">Trà</option>
+                <option value="trasua">Trà sữa</option>
+                <option value="monno">Món no</option>
+                <option value="banh">Bánh</option>
+                <option value="snack">Ăn vặt</option>
+                <option value="nuocep">Nước ép</option>
+            </select>
+
+            <label>Hình ảnh (URL)</label>
+            <input id="mImg" type="text">
+
+            <label>Mô tả</label>
+            <textarea id="mDesc" rows="3"></textarea>
+
+            <label>Trạng thái</label>
+            <select id="mStatus">
+                <option value="ok">Còn hàng</option>
+                <option value="no">Hết hàng</option>
+            </select>
+
+            <div class="menu-actions">
+                <button id="btnSave" class="btn-save">Lưu</button>
+                <button id="btnClose" class="btn-cancel">Hủy</button>
+            </div>
         </div>
     </div>
+
+
+    <!-- ===================== TABLE ===================== -->
+    <table class="menu-table" style="width: 100%; margin-top: 15px; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>Ảnh</th>
+                <th>Tên món</th>
+                <th>Giá</th>
+                <th>Danh mục</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody id="menuBody"></tbody>
+    </table>
 </div>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
     const APP_KEY = "qr_order_demo_v1";
-
-    const wrap = document.getElementById("menuGrid");
-    const search = document.getElementById("searchMenu");
-    const filter = document.getElementById("filterCategory");
 
     function getMenu(){
         const data = JSON.parse(localStorage.getItem(APP_KEY));
@@ -57,20 +94,23 @@ document.addEventListener("DOMContentLoaded", () => {
         return Number(n).toLocaleString("vi-VN") + " ₫";
     }
 
-    function render(items){
-        wrap.innerHTML = items.map(m => `
-            <div class="admin-card">
-                <img src="${m.img}" />
+    const tbody = document.getElementById("menuBody");
+    const search = document.getElementById("searchMenu");
+    const filter = document.getElementById("filterCategory");
 
-                <div class="admin-card-body">
-                    <div class="admin-name">${m.name}</div>
-                    <div class="admin-price">${formatVND(m.price)}</div>
-                    <div class="admin-cat">${m.category}</div>
-
-                    <button onclick="openMenuModal('edit', '${m.id}')">Sửa</button>
-                    <button onclick="deleteMenu('${m.id}')">Xóa</button>
-                </div>
-            </div>
+    function renderTable(items){
+        tbody.innerHTML = items.map(m => `
+            <tr>
+                <td><img src="${m.img}" style="width:60px;height:60px;border-radius:6px;object-fit:cover"></td>
+                <td>${m.name}</td>
+                <td>${formatVND(m.price)}</td>
+                <td>${m.category}</td>
+                <td>${m.status === "ok" ? "<span style='color:green'>Còn hàng</span>" : "<span style='color:red'>Hết hàng</span>"}</td>
+                <td>
+                    <button onclick="openMenuModal('edit', ${m.id})" class="btn-edit">Sửa</button>
+                    <button onclick="deleteMenu(${m.id})" class="btn-delete">Xóa</button>
+                </td>
+            </tr>
         `).join("");
     }
 
@@ -81,9 +121,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (q) items = items.filter(m => m.name.toLowerCase().includes(q));
 
         const cat = filter.value;
-        if (cat !== "all") items = items.filter(m => m.category === cat);
+        if (cat !== "all") {
+            items = items.filter(m => m.category === cat);
+        }
 
-        render(items);
+        renderTable(items);
     }
 
     search.oninput = applyFilter;
@@ -93,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// ================= XOÁ MÓN =================
+/* ================= XOÁ MÓN ================= */
 function deleteMenu(id){
     if (!confirm("Xóa món này?")) return;
 
@@ -105,4 +147,12 @@ function deleteMenu(id){
     localStorage.setItem(APP_KEY, JSON.stringify(data));
     location.reload();
 }
+
+
+/* ========== ĐÓNG MODAL ========== */
+document.addEventListener("click", (e) => {
+    if (e.target.id === "btnClose" || e.target.id === "menuModal") {
+        document.getElementById("menuModal").classList.remove("show");
+    }
+});
 </script>

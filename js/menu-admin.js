@@ -67,6 +67,9 @@ let editId = null;
 
 window.openMenuModal = function (mode, id) {
     modal.classList.remove("hide");
+    modal.classList.add("show");
+    btnClose.onclick = () => modal.classList.add("hide");
+
 
     const mName = document.getElementById("mName");
     const mPrice = document.getElementById("mPrice");
@@ -82,7 +85,7 @@ window.openMenuModal = function (mode, id) {
         mPrice.value = "";
         mDesc.value = "";
         mImg.value = "";
-        m.status === "Đang bán"
+        mStatus.value === "Đang bán"
 
 
     } else {

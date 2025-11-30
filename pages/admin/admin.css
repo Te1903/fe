@@ -277,3 +277,154 @@ body{margin:0;font-family:Inter, Arial, sans-serif;background:#fafafa}
     border-radius: 12px;
     box-shadow: 0 4px 14px rgba(0,0,0,0.1);
 }
+
+/* ==============================
+      POPUP THÊM / SỬA MÓN
+   ============================== */
+.menu-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.menu-modal.show {
+    display: flex !important;
+}
+
+.menu-modal-box {
+    width: 430px;
+    background: #fff;
+    padding: 25px 28px;
+    border-radius: 16px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+    animation: popupFade .25s ease;
+}
+
+@keyframes popupFade {
+    from { transform: scale(0.85); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+/* Title */
+.menu-modal-box h3 {
+    margin: 0 0 14px 0;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* Input fields */
+.menu-modal-box input,
+.menu-modal-box textarea,
+.menu-modal-box select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    margin-bottom: 14px;
+    background: #fafafa;
+}
+
+.menu-modal-box input:focus,
+.menu-modal-box textarea:focus,
+.menu-modal-box select:focus {
+    border-color: #007bff;
+    background: #fff;
+}
+
+/* Buttons */
+.menu-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-save {
+    background: #007bff;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-save:hover {
+    background: #0069d9;
+    transform: translateY(-1px);
+}
+
+.btn-cancel {
+    background: #ddd;
+    padding: 9px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-cancel:hover {
+    background: #ccc;
+}
+
+/* Input label */
+.menu-modal-box label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: block;
+}
+
+/*  giao diện account    */
+.account-page {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.page-title {
+    font-size: 24px;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.acc-row {
+    margin-bottom: 18px;
+}
+
+.acc-row label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.acc-row input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #f8f8f8;
+}
+
+.password-wrap {
+    position: relative;
+}
+
+.show-btn {
+    position: absolute;
+    right: 8px;
+    top: 6px;
+    padding: 6px 8px;
+    border: none;
+    background: #eee;
+    border-radius: 6px;
+    cursor: pointer;
+}

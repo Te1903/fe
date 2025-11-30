@@ -1,143 +1,143 @@
-console.log("staff-admin.js loaded");
-const APP_KEY = "qr_order_demo_v1";
+// ======================= KEY LOCAL STORAGE =======================
+const STAFF_KEY = "qr_staff_data";
 
-/* GET + SET */
-function getData() {
-    const data = JSON.parse(localStorage.getItem(APP_KEY)) || {};
-    if (!data.staff) data.staff = [];
-    return data;
+// ======================= KHỞI TẠO DỮ LIỆU DEMO =======================
+function initDemoStaff() {
+    if (localStorage.getItem(STAFF_KEY)) return;
+
+    const demo = {
+        staff: [
+            { id: 1, name: "Nguyễn Văn A", username: "admin", password: "123", role: "admin", status: "active" },
+            { id: 2, name: "Trần Thị B", username: "cashier1", password: "123", role: "cashier", status: "active" },
+            { id: 3, name: "Lê Văn C", username: "staff1", password: "123", role: "staff", status: "inactive" }
+        ]
+    };
+
+    localStorage.setItem(STAFF_KEY, JSON.stringify(demo));
 }
 
-function saveData(data) {
-    localStorage.setItem(APP_KEY, JSON.stringify(data));
+// ======================= ĐỌC DỮ LIỆU =======================
+function getStaff() {
+    const data = JSON.parse(localStorage.getItem(STAFF_KEY));
+    return data?.staff || [];
 }
 
-/* INIT */
-export function staffManagerInit() {
-    const search = document.getElementById("searchStaff");
-    const filter = document.getElementById("filterRole");
-    const tbody  = document.getElementById("staffBody");
-
-    function render() {
-        let data = getData();
-        let list = data.staff;
-
-        const q = search.value.toLowerCase();
-        if (q) list = list.filter(s => s.name.toLowerCase().includes(q));
-
-        const r = filter.value;
-        if (r !== "all") list = list.filter(s => s.role === r);
-
-        tbody.innerHTML = list.map((s,i)=> `
-            <tr>
-                <td>${i+1}</td>
-                <td>${s.name}</td>
-                <td>${s.username}</td>
-                <td>${formatRole(s.role)}</td>
-                <td>${s.status === "active" ? "Đang làm" : "Nghỉ làm"}</td>
-                <td>
-                    <button class="btn-edit" onclick="openStaffModal('edit', ${s.id})">Sửa</button>
-                    <button class="btn-delete" onclick="deleteStaff(${s.id})">Xóa</button>
-                </td>
-            </tr>
-        `).join("");
-    }
-
-    window.refreshStaffTable = render;
-    search.oninput = render;
-    filter.onchange = render;
-    render();
+function saveStaff(list) {
+    localStorage.setItem(STAFF_KEY, JSON.stringify({ staff: list }));
 }
 
-function formatRole(r){
-    return r === "admin" ? "Quản trị"
-         : r === "cashier" ? "Thu ngân"
-         : "Nhân viên";
+// ======================= RENDER LIST =======================
+function renderStaffList() {
+    const tbody = document.getElementById("staffBody");
+    if (!tbody) return;
+
+    const search = document.getElementById("searchStaff").value.toLowerCase();
+    const role = document.getElementById("filterRole").value;
+
+    let list = getStaff();
+
+    if (search) list = list.filter(s => s.name.toLowerCase().includes(search));
+    if (role !== "all") list = list.filter(s => s.role === role);
+
+    tbody.innerHTML = list.map((s, i) => `
+        <tr>
+            <td>${i + 1}</td>
+            <td>${s.name}</td>
+            <td>${s.username}</td>
+            <td>${s.role}</td>
+            <td>${s.status === "active" ? "Đang làm" : "Nghỉ làm"}</td>
+            <td>
+                <button onclick="openStaffModal('edit', ${s.id})">Sửa</button>
+                <button onclick="deleteStaff(${s.id})">Xóa</button>
+            </td>
+        </tr>
+    `).join("");
 }
 
-/* DELETE */
-window.deleteStaff = id => {
-    const data = getData();
-    data.staff = data.staff.filter(s => s.id !== id);
-    saveData(data);
-    refreshStaffTable();
-};
+// ======================= MODAL THÊM / SỬA =======================
+let editingId = null;
 
-/* MODAL */
-const modal = document.getElementById("staffModal");
-let editId = null;
+function openStaffModal(type, id = null) {
+    const modal = document.getElementById("staffModal");
+    const title = document.getElementById("staffModalTitle");
 
-window.openStaffModal = (mode, id) => {
     modal.classList.remove("hide");
 
-    const sName = document.getElementById("sName");
-    const sUsername = document.getElementById("sUsername");
-    const sPassword = document.getElementById("sPassword");
-    const sRole = document.getElementById("sRole");
-    const sStatus = document.getElementById("sStatus");
+    if (type === "add") {
+        title.textContent = "Thêm nhân viên";
+        editingId = null;
 
-    if (mode === "add") {
-        editId = null;
-        sName.value = "";
-        sUsername.value = "";
-        sPassword.value = "";
-        sRole.value = "staff";
-        sStatus.value = "active";
-        return;
-    }
-
-    const data = getData();
-    const st = data.staff.find(s => s.id === id);
-    editId = id;
-
-    sName.value = st.name;
-    sUsername.value = st.username;
-    sPassword.value = st.password;
-    sRole.value = st.role;
-    sStatus.value = st.status;
-};
-
-document.getElementById("btnCloseStaff").onclick = () =>
-    modal.classList.add("hide");
-
-/* SAVE */
-document.getElementById("btnSaveStaff").onclick = () => {
-    const sName = document.getElementById("sName").value.trim();
-    const sUsername = document.getElementById("sUsername").value.trim();
-    const sPassword = document.getElementById("sPassword").value.trim();
-    const sRole = document.getElementById("sRole").value;
-    const sStatus = document.getElementById("sStatus").value;
-
-    if (!sName || !sUsername || !sPassword) {
-        alert("Vui lòng nhập đủ thông tin!");
-        return;
-    }
-
-    const data = getData();
-
-    if (editId === null) {
-        data.staff.push({
-            id: Date.now(),
-            name: sName,
-            username: sUsername,
-            password: sPassword,
-            role: sRole,
-            status: sStatus
-        });
+        document.getElementById("sName").value = "";
+        document.getElementById("sUsername").value = "";
+        document.getElementById("sPassword").value = "";
+        document.getElementById("sRole").value = "staff";
+        document.getElementById("sStatus").value = "active";
 
     } else {
-        const st = data.staff.find(s => s.id === editId);
-        st.name = sName;
-        st.username = sUsername;
-        st.password = sPassword;
-        st.role = sRole;
-        st.status = sStatus;
+        title.textContent = "Sửa nhân viên";
+        editingId = id;
+
+        const staff = getStaff().find(s => s.id === id);
+
+        document.getElementById("sName").value = staff.name;
+        document.getElementById("sUsername").value = staff.username;
+        document.getElementById("sPassword").value = staff.password;
+        document.getElementById("sRole").value = staff.role;
+        document.getElementById("sStatus").value = staff.status;
+    }
+}
+
+function closeStaffModal() {
+    document.getElementById("staffModal").classList.add("hide");
+}
+
+// ======================= LƯU NHÂN VIÊN =======================
+document.addEventListener("click", function (e) {
+    if (e.target.id === "btnSaveStaff") {
+        const list = getStaff();
+
+        const obj = {
+            id: editingId ?? Date.now(),
+            name: document.getElementById("sName").value,
+            username: document.getElementById("sUsername").value,
+            password: document.getElementById("sPassword").value,
+            role: document.getElementById("sRole").value,
+            status: document.getElementById("sStatus").value,
+        };
+
+        if (editingId) {
+            const index = list.findIndex(s => s.id === editingId);
+            list[index] = obj;
+        } else {
+            list.push(obj);
+        }
+
+        saveStaff(list);
+        closeStaffModal();
+        renderStaffList();
     }
 
-    saveData(data);
-    modal.classList.add("hide");
-    refreshStaffTable();
-};
+    if (e.target.id === "btnCloseStaff") {
+        closeStaffModal();
+    }
+});
 
-/* ADD BUTTON */
-document.getElementById("btnAddStaff").onclick = () => openStaffModal("add");
+// ======================= XÓA =======================
+function deleteStaff(id) {
+    if (!confirm("Xóa nhân viên này?")) return;
+
+    const list = getStaff().filter(s => s.id !== id);
+    saveStaff(list);
+    renderStaffList();
+}
+
+function initStaffPage() {
+    initDemoStaff();
+    renderStaffList();
+
+    document.getElementById("searchStaff").oninput = renderStaffList;
+    document.getElementById("filterRole").onchange = renderStaffList;
+    document.getElementById("btnAddStaff").onclick = () => openStaffModal("add");
+}
+
+initStaffPage(); // chạy ngay
