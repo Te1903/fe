@@ -1,33 +1,36 @@
-<div class="menu-page">
-  <h2 class="menu-title">👥 Quản lý nhân viên</h2>
+<div class="staff-page">
+    
+    <h2 class="page-title">👥 Quản lý nhân viên</h2>
 
-  <div class="menu-toolbar left-align">
-      <input id="searchStaff" type="text" class="menu-input" placeholder="Tìm nhân viên...">
-      <select id="filterRole" class="menu-select">
-          <option value="all">Tất cả</option>
-          <option value="admin">Quản trị</option>
-          <option value="cashier">Thu ngân</option>
-          <option value="staff">Nhân viên</option>
-      </select>
-      <button id="btnAddStaff" class="btn-primary">+ Thêm nhân viên</button>
-  </div>
+    <div class="staff-toolbar">
+        <input type="text" id="searchStaff" class="menu-input" placeholder="Tìm nhân viên...">
+        <select id="filterRole" class="menu-select">
+            <option value="all">Tất cả</option>
+            <option value="admin">Admin</option>
+            <option value="cashier">Thu ngân</option>
+            <option value="staff">Nhân viên</option>
+        </select>
+        <button id="btnAdd" class="btn-primary">+ Thêm nhân viên</button>
+    </div>
 
-  <div class="table-wrap">
-      <table class="admin-table">
-          <thead>
-              <tr>
-                  <th>STT</th>
-                  <th>Tên nhân viên</th>
-                  <th>Tên đăng nhập</th>
-                  <th>Vai trò</th>
-                  <th>Trạng thái</th>
-                  <th>Hành động</th>
-              </tr>
-          </thead>
-          <tbody id="staffBody"></tbody>
-      </table>
-  </div>
+    <div class="table-wrap">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên nhân viên</th>
+                    <th>Tên đăng nhập</th>
+                    <th>Vai trò</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="staffBody"></tbody>
+        </table>
+    </div>
+
 </div>
+
 
 <!-- MODAL STAFF -->
 <div id="staffModal" class="modal hide">
@@ -62,4 +65,3 @@
       </div>
   </div>
 </div>
-

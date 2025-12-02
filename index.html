@@ -7,6 +7,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="styles/styles.css">
   
+  
 
   <!-- Font Awesome -->
   <link rel="stylesheet"
@@ -35,16 +36,6 @@
     <a href="pages/menu/index.html" class="home-top-btn ghost">🍽 Xem menu</a>
 </div>
 
-  <div class="user-right">
-      <button id="userMenuBtn" class="user-avatar">
-          <i class="fa fa-user"></i>
-      </button>
-
-      <div id="userMenu" class="user-menu hide">
-          <a href="pages/account.html">👤 Tài khoản</a>
-          <a href="pages/account/change-pass.html">🔐 Đổi mật khẩu</a>
-          <a href="login/index.html">🚪 Đăng xuất</a>
-      </div>
   </div>
 
 </header> <!-- đúng -->
@@ -108,17 +99,3 @@
 
 </body>
 </html>
-
-<script>
-const btn = document.getElementById("userMenuBtn");
-const menu = document.getElementById("userMenu");
-
-btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    menu.classList.toggle("hide");
-});
-
-document.addEventListener("click", () => {
-    menu.classList.add("hide");
-});
-</script>

@@ -1,4 +1,5 @@
-const STAFF_KEY = "qr_staff_data";
+const APP_KEY = "qr_order_demo_v1";
+
 
 function changePassword() {
     const data = JSON.parse(localStorage.getItem(STAFF_KEY)) || {};

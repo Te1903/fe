@@ -33,3 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("accStatus").value = staff.status;
     document.getElementById("accPass").value = staff.password;
 });
+document.getElementById("togglePass").onclick = function () {
+    const input = document.getElementById("accPass");
+
+    if (input.type === "password") {
+        input.type = "text";
+        this.classList.remove("fa-eye");
+        this.classList.add("fa-eye-slash");
+    } else {
+        input.type = "password";
+        this.classList.remove("fa-eye-slash");
+        this.classList.add("fa-eye");
+    }
+};
+

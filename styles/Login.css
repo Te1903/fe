@@ -1,3 +1,11 @@
+/* ==== NỀN ==== */
+.acc-page {
+    background: url("https://photo.znews.vn/w660/Uploaded/tmuitg/2016_10_13/12.jpg")
+    center/cover no-repeat fixed;
+    margin: 0;
+    padding: 40px 0;
+    font-family: Inter, Arial;
+}
 body.login-page {
   display: flex;
   justify-content: center;

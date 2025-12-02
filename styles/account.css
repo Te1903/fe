@@ -1,12 +1,11 @@
 /* ==== NỀN ==== */
 .acc-page {
-    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHL02e-dtxUncn0bG9993aQZxO_d7ya12sXw&s")
+    background: url("https://noithatthanhnien.com/wp-content/uploads/2022/02/photo-1543007631-283050bb3e8c.jpg  ")
     center/cover no-repeat fixed;
     margin: 0;
     padding: 40px 0;
     font-family: Inter, Arial;
 }
-
 /* ==== CONTAINER ==== */
 .acc-container {
     width: 650px;
@@ -92,7 +91,7 @@
 }
 
 .btn-change:hover {
-    background: #0056b3;
+    background: #4b4e51;
 }
 
 

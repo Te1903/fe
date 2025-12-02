@@ -92,3 +92,10 @@ loadPage("dashboard.html");
 document.getElementById("hamburger")?.addEventListener("click", () => {
     document.body.classList.toggle("sidebar-collapsed");
 });
+
+
+// highlight nav-link active
+document.querySelectorAll(".nav-link").forEach(el => el.classList.remove("active"));
+
+const current = document.querySelector(`.nav-link[data-page="${page}"]`);
+if (current) current.classList.add("active");

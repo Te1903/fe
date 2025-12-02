@@ -18,8 +18,27 @@
             <input type="text" placeholder="Tài khoản" id="username">
             <input type="password" placeholder="Mật khẩu" id="password">
         </div>
-            <button class="btn-login" onclick="handleLogin()">Đăng nhập</button>
-            <!-- Nút trở lại -->
+                <button class="btn-login" onclick="handleLogin()">Đăng nhập</button>
+            <a href="#" class="forgot-pass" onclick="openForgot()">Quên mật khẩu?</a>
+            <div id="login-error" class="login-error"></div>
+
+        <!-- POPUP QUÊN MẬT KHẨU -->
+    <div id="forgotPopup" class="forgot-popup hide">
+        <div class="forgot-box">
+            <h3>Quên mật khẩu</h3>
+            <p class="forgot-note">Nhập email để nhận liên kết đặt lại mật khẩu</p>
+
+            <input id="forgotEmail" type="email" placeholder="Email của bạn">
+
+            <div class="forgot-actions">
+                <button class="btn-cancel" onclick="closeForgot()">Hủy</button>
+                <button class="btn-send" onclick="sendReset()">Gửi</button>
+            </div>
+
+            <p id="forgotMsg" class="forgot-msg"></p>
+        </div>
+    </div>
+                <!-- Nút trở lại -->
         <a href="../../index.html" class="back-btn">
         <i class="fa-solid fa-arrow-left"></i> Trở lại
         </a>
@@ -36,23 +55,42 @@ function login() {
         document.getElementById("login-error").textContent = "⚠ Vui lòng điền đầy đủ thông tin!";
         return;
     }
-
-    // Demo user
+// demo user
     if (user === "admin" && pass === "123") {
-        window.location.href = "admin.html";
+        window.location.href = "../admin/index.html";
     } 
     else if (user === "cashier" && pass === "123") {
-        window.location.href = "cashier.html";
+        window.location.href = "../cashier/index.html";
     } 
     else if (user === "bep" && pass === "123") {
-        window.location.href = "kitchen.html";
-    } 
-    else {
-        document.getElementById("login-error").textContent = "❌ Sai tài khoản hoặc mật khẩu!";
+        window.location.href = "../kitchen/index.html";
     }
+
 }
 </script>
 
 </body>
 </html>
+<script>
+function openForgot() {
+    document.getElementById("forgotPopup").classList.remove("hide");
+}
 
+function closeForgot() {
+    document.getElementById("forgotPopup").classList.add("hide");
+    document.getElementById("forgotMsg").textContent = "";
+}
+
+function sendReset() {
+    const email = document.getElementById("forgotEmail").value.trim();
+    const msg = document.getElementById("forgotMsg");
+
+    if (email === "") {
+        msg.textContent = "⚠ Vui lòng nhập email!";
+        return;
+    }
+
+    // Giả lập gửi email
+    msg.textContent = "📩 Liên kết đặt lại mật khẩu đã được gửi!";
+}
+</script>

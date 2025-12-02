@@ -1,104 +1,48 @@
-const APP_KEY = "qr_order_demo_v1";
+console.log("report.js loaded");
 
-function readData() {
-    return JSON.parse(localStorage.getItem(APP_KEY) || "{}");
+// --- TẠO DỮ LIỆU MẪU ---
+const demoReport = {
+    dateCreated: "01/12/2025",
+    creator: "Admin",
+    saleDate: "01/12/2025",
+
+    income: 520000,
+    outcome: 120000,
+    cash: 300000,
+    bank: 220000,
+
+    totalOrders: 18,
+    estimatedRevenue: 520000,
+
+    cancelCount: 2,
+    cancelValue: 45000
+};
+
+// Lưu vào localStorage (nếu chưa có)
+if (!localStorage.getItem("daily_report")) {
+    localStorage.setItem("daily_report", JSON.stringify(demoReport));
 }
+
+// ---- LOAD LÊN HTML ----
+const r = JSON.parse(localStorage.getItem("daily_report"));
 
 function formatVND(n) {
-    return Number(n).toLocaleString("vi-VN") + " ₫";
+    return n.toLocaleString("vi-VN") + " ₫";
 }
 
-document.getElementById("report-date").value =
-    new Date().toISOString().slice(0, 10);
+document.getElementById("rDate").textContent = r.dateCreated;
+document.getElementById("rCreator").textContent = r.creator;
+document.getElementById("rSaleDate").textContent = r.saleDate;
 
-document.getElementById("btn-load").onclick = loadReport;
-document.getElementById("btn-print").onclick = () => window.print();
+document.getElementById("rIncome").innerHTML = formatVND(r.income);
+document.getElementById("rOutcome").innerHTML = formatVND(r.outcome);
+document.getElementById("rBalance").innerHTML = formatVND(r.income - r.outcome);
 
-function loadReport() {
+document.getElementById("rCash").innerHTML = formatVND(r.cash);
+document.getElementById("rBank").innerHTML = formatVND(r.bank);
 
-    const date = document.getElementById("report-date").value;
-    const data = readData();
-    const orders = data.orders || [];
+document.getElementById("rOrders").textContent = r.totalOrders;
+document.getElementById("rRevenue").innerHTML = formatVND(r.estimatedRevenue);
 
-    // lọc theo ngày
-    const start = new Date(date + "T00:00:00");
-    const end = new Date(date + "T23:59:59");
-
-    const today = orders.filter(o => {
-        const t = new Date(o.createdAt);
-        return t >= start && t <= end;
-    });
-
-    // tổng kết
-    let revenue = 0;
-    let cost = 0;
-    let cancelCount = 0;
-    let cancelValue = 0;
-
-    const payStats = {};
-    const topItems = {};
-
-    today.forEach(o => {
-        const total = o.items.reduce((s, i) => s + i.qty * i.price, 0);
-        revenue += total;
-
-        // thanh toán
-        const method = o.paymentMethod || "Không rõ";
-        if (!payStats[method]) payStats[method] = { count: 0, total: 0 };
-        payStats[method].count++;
-        payStats[method].total += total;
-
-        // hủy
-        if (o.status === "canceled") {
-            cancelCount += o.items.reduce((s, i) => s + i.qty, 0);
-            cancelValue += total;
-        }
-
-        // top món
-        o.items.forEach(i => {
-            if (!topItems[i.name]) topItems[i.name] = { qty: 0, revenue: 0 };
-            topItems[i.name].qty += i.qty;
-            topItems[i.name].revenue += i.qty * i.price;
-        });
-    });
-
-    // cập nhật giao diện
-    document.getElementById("sum-orders").textContent = today.length;
-    document.getElementById("sum-revenue").textContent = formatVND(revenue);
-    document.getElementById("sum-cost").textContent = formatVND(cost);
-    document.getElementById("sum-profit").textContent = formatVND(revenue - cost);
-
-    // phương thức thanh toán
-    const payBody = document.getElementById("pay-method-body");
-    payBody.innerHTML = "";
-    Object.keys(payStats).forEach(m => {
-        payBody.innerHTML += `
-            <tr>
-                <td>${m}</td>
-                <td>${payStats[m].count}</td>
-                <td>${formatVND(payStats[m].total)}</td>
-            </tr>
-        `;
-    });
-
-    // hủy món
-    document.getElementById("cancel-count").textContent = cancelCount;
-    document.getElementById("cancel-value").textContent = formatVND(cancelValue);
-
-    // top món
-    const topBody = document.getElementById("top-items-body");
-    topBody.innerHTML = "";
-
-    Object.entries(topItems)
-        .sort((a, b) => b[1].qty - a[1].qty)
-        .slice(0, 10)
-        .forEach(([name, v]) => {
-            topBody.innerHTML += `
-                <tr>
-                    <td>${name}</td>
-                    <td>${v.qty}</td>
-                    <td>${formatVND(v.revenue)}</td>
-                </tr>
-            `;
-        });
-}
+document.getElementById("rCancelCount").textContent = r.cancelCount;
+document.getElementById("rCancelValue").innerHTML = formatVND(r.cancelValue);

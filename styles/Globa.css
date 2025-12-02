@@ -10,10 +10,7 @@ html, body {
   overflow-x: hidden;
 }
 
-/* BACKGROUND DEFAULT */
-body {
-  background: url("https://i.imgur.com/KVq8Qqv.jpeg") center/cover fixed;
-}
+
 
 /* UNIVERSAL GLASS */
 .glass {
@@ -22,4 +19,8 @@ body {
   backdrop-filter: blur(14px);
   box-shadow: 0 8px 25px rgba(0,0,0,0.22);
   border-radius: 18px;
+}
+body {
+    background: url("https://photo.znews.vn/w660/Uploaded/tmuitg/2016_10_13/12.jpg") no-repeat center center fixed;
+    background-size: cover;
 }

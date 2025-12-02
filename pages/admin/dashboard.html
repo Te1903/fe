@@ -1,4 +1,110 @@
-<div class="dashboard-page">
-    <h2>Trang tổng quan</h2>
-    <p>Chào mừng Admin!</p>
+<div class="report-page">
+
+   <link rel="stylesheet" href="../../styles/report.css">
+
+        <!-- KHUNG RIÊNG chứa TITLE -->
+    <div class="report-section title-box">
+        <h2 class="report-title">TỔNG KẾT DOANH THU</h2>
+    </div>
+    <!-- THÔNG TIN CHUNG -->
+    <div class="report-section">
+        <h3> Báo cáo cuối ngày</h3>
+
+        <div class="report-grid">
+            <div>
+                <label>Ngày tạo</label>
+                <p id="rDate">--/--/----</p>
+            </div>
+
+            <div>
+                <label>Người lập</label>
+                <p id="rCreator">Admin</p>
+            </div>
+
+            <div>
+                <label>Ngày bán</label>
+                <p id="rSaleDate">--/--/----</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- THU CHI -->
+    <div class="report-section">
+        <h3> Tổng kết thu – chi</h3>
+
+        <div class="report-grid">
+            <div>
+                <label>Tổng thu</label>
+                <p id="rIncome" class="green">0 ₫</p>
+            </div>
+
+            <div>
+                <label>Tổng chi</label>
+                <p id="rOutcome" class="red">0 ₫</p>
+            </div>
+
+            <div>
+                <label>Thu – Chi</label>
+                <p id="rBalance" class="bold">0 ₫</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHƯƠNG THỨC THANH TOÁN -->
+    <div class="report-section">
+        <h3> Phương thức thanh toán</h3>
+
+        <div class="report-grid">
+            <div>
+                <label>Tiền mặt</label>
+                <p id="rCash">0 ₫</p>
+            </div>
+
+            <div>
+                <label>Chuyển khoản</label>
+                <p id="rBank">0 ₫</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TỔNG KẾT BÁN HÀNG -->
+    <div class="report-section">
+        <h3> Tổng kết bán hàng</h3>
+
+        <div class="report-grid">
+            <div>
+                <label>Tổng đơn hàng</label>
+                <p id="rOrders">0</p>
+            </div>
+
+            <div>
+                <label>Doanh thu ước tính</label>
+                <p id="rRevenue">0 ₫</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MÓN HỦY -->
+    <div class="report-section">
+        <h3>Hủy món</h3>
+
+        <div class="report-grid">
+            <div>
+                <label>Số lượng món hủy</label>
+                <p id="rCancelCount">0</p>
+            </div>
+
+            <div>
+                <label>Giá trị món hủy</label>
+                <p id="rCancelValue" class="red">0 ₫</p>
+            </div>
+        </div>
+    </div>
+
 </div>
+<div class="report-page">
+
+
+
+<script src="../../../js/report.js"></script>
+    
