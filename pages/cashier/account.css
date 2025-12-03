@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url("../../assets/bg-coffee.jpg") no-repeat center/cover;
+}
+
+.account-box {
+  width: 380px;
+  margin: 60px auto;
+  background: rgba(123, 118, 118, 0.6);
+  color: rgb(225, 219, 219);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px #ffeaea;
+}
+
+.account-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  border-bottom: 1px solid #725757;
+  padding-bottom: 6px;
+}
+
+.account-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+.logout-btn {
+  background: red;
+  color: white;
+}
+
+
+/* ===================== BACKGROUND (Cafe style) ===================== */
+body {
+  background: url("https://noithatthanhnien.com/wp-content/uploads/2022/02/photo-1543007631-283050bb3e8c.jpg")
+  center/cover no-repeat fixed;
+}
+
+body::before {
+  background: rgba(0,0,0,0.15); /* nhẹ hơn, nhìn rõ quán */
+  backdrop-filter: none; /* bỏ mờ */
+}
+
+.back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.back-btn:hover {
+    background: #2196f3;
+    transform: scale(1.05);
+}

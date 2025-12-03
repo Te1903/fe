@@ -6,7 +6,6 @@
 <div class="report-page">
 <div class="cashier-menu-wrapper">
 
-        <a href="index.html">BACK</a>
     </div>
 </div>
     <!-- BÁO CÁO CUỐI NGÀY -->
@@ -103,7 +102,14 @@
             </div>
         </div>
     </div>
-
+  <button class="back-btn" onclick="goBack()">
+      ⬅ Quay lại
+  </button>
 </div>
 
 <script src="../../js/cashier-report.js"></script>
+<script>
+function goBack() {
+    window.location.href = "index.html"; // quay về trang thu ngân
+}
+</script>

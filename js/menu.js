@@ -17,6 +17,17 @@ const IMG_NUOC_CAM =
   "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/2/19/cach-lam-nuoc-cam-ep-ngon-va-thom-ket-hop-voi-le-va-gung-5-1645248090817401855254.jpg";
 const IMG_KHOAI_TAY =
   "https://cdn.tgdd.vn/2021/07/CookProduct/khoai-tay-chien-bao-nhieu-calo-an-khoai-lang-hay-khoai-tay-chien-tot-hon-00-1200x676.jpg";
+const IMG_CUA_SOT_ME =
+"https://ngochuong.vn/upload/image/data/Nhung/Menu/Cua/Cua-rang-me-5be.jpg"
+const IMG_GOI_CUON =
+"https://maisonmando.com/wp-content/uploads/2020/06/goi-cuon-tom-thit.jpg"
+const IMG_GA_NUONG=
+"https://maisonmando.com/wp-content/uploads/2020/06/ga-nuong-la-chanh-1536x1152.jpg"
+const IMG_BANH_MI=
+"https://maisonmando.com/wp-content/uploads/2020/06/banh-mi.png"
+const IMG_CHA_CA=
+"https://maisonmando.com/wp-content/uploads/2020/06/cha-muc-ha-long-1536x969.jpg"
+
 
 /* ========== DANH MỤC ========== */
 const CATEGORIES = [
@@ -43,7 +54,16 @@ function initDemoMenu() {
       { id: 105, name: "Bông lan phô mai", price: 30000, category: "banh", desc:"Xốp mềm, phô mai béo", img: IMG_BANH_BONG_LAN },
       { id: 106, name: "Matcha Latte", price: 35000, category: "trasua", desc:"Matcha chuẩn Nhật", img: IMG_MATCHA },
       { id: 107, name: "Nước ép cam", price: 20000, category: "nuocep", desc:"Cam vắt tươi", img: IMG_NUOC_CAM },
-      { id: 108, name: "Khoai tây chiên", price: 18000, category: "snack", desc:"Giòn rụm nóng hổi", img: IMG_KHOAI_TAY }
+      { id: 108, name: "Khoai tây chiên", price: 18000, category: "snack", desc:"Giòn rụm nóng hổi", img: IMG_KHOAI_TAY },
+      { id: 109, name: "Cua Sốt Me", price: 108000, category: "mono", desc:"Cua sốt me thơm ngát", img: IMG_CUA_SOT_ME },
+      { id: 110, name: "Gỏi Cuốn Nhà Gu", price: 98000, category: "mono", desc:"Đặc sản miền nam", img: IMG_GOI_CUON },
+      { id: 111, name: "Gà Nướng", price: 108000, category: "mono", desc:"Gà Nướng thơm ngát", img: IMG_GA_NUONG },
+      { id: 112, name: "Bánh Mì", price: 38000, category: "mono", desc:"Đặc Sản Việt Nam", img: IMG_BANH_MI },
+      { id: 113, name: "Chả Cá", price: 208000, category: "mono", desc:"Chả Cá Việt Nam", img:  IMG_CHA_CA}
+
+
+
+
     ]
   };
 

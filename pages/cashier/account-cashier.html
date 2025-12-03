@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Tài khoản Thu ngân • Gu22 Coffee</title>
+  <link rel="stylesheet" href="account.css">
+</head>
+<body class="account-page">
+
+  <div class="account-box">
+    <h2> Thông tin tài khoản</h2>
+
+    <div class="info-row">
+      <label>Họ tên:</label>
+      <span id="accName"></span>
+    </div>
+
+    <div class="info-row">
+      <label>Tên đăng nhập:</label>
+      <span id="accUsername"></span>
+    </div>
+
+    <div class="info-row">
+      <label>Vai trò:</label>
+      <span id="accRole"></span>
+    </div>
+
+    <div class="info-row">
+      <label>Email:</label>
+      <span id="accEmail"></span>
+    </div>
+
+    <div class="info-row">
+      <label>Số điện thoại:</label>
+      <span id="accPhone"></span>
+    </div>
+
+    <div class="info-row">
+      <label>Ngày tạo:</label>
+      <span id="accCreated"></span>
+    </div>
+  <button class="back-btn" onclick="goBack()">
+      ⬅ Quay lại
+  </button>
+
+
+
+
+  <script src="cashier-account.js"></script>
+</body>
+</html>
+
+<script>
+function goBack() {
+    window.location.href = "index.html"; // quay về trang thu ngân
+}
+</script>

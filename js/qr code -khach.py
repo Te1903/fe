@@ -1,7 +1,7 @@
 import qrcode
 
 # Đường dẫn file HTML
-url = "https://github.com/Te1903/index.html"
+url = "https://te1903.github.io/index.html"
 
 
 # Tạo mã QR

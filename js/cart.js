@@ -1,54 +1,75 @@
-/* ============= CART SESSION ============= */
+function renderCart() {
+  const data = readData();
+  const cart = data.cart || [];
+  const wrap = document.getElementById("cart-list");
 
-function getCart() {
-  return JSON.parse(sessionStorage.getItem('qr_cart') || '[]');
-}
-
-function setCart(c) {
-  sessionStorage.setItem('qr_cart', JSON.stringify(c));
-  updateBottomCart();
-}
-
-function clearCart() {
-  sessionStorage.removeItem('qr_cart');
-  updateBottomCart();
-}
-
-function updateBottomCart() {
-  const bar = document.getElementById("bottom-cart");
-  if (!bar) return;
-
-  const cart = getCart();
-  const count = cart.reduce((s, i) => s + i.qty, 0);
-  const total = cart.reduce((s, i) => s + i.qty * i.price, 0);
-
-  if (count === 0) {
-    bar.style.display = "none";
-  } else {
-    document.getElementById("bottom-count").textContent = count;
-    document.getElementById("bottom-total").textContent = formatVND(total);
-    bar.style.display = "flex";
+  if (cart.length === 0) {
+    wrap.innerHTML = "<p>🛒 Giỏ hàng đang trống</p>";
+    document.getElementById("cart-total").textContent = formatVND(0);
+    return;
   }
+
+  let total = 0;
+
+  wrap.innerHTML = cart.map((item, i) => {
+    total += item.qty * item.price;
+
+      return `
+        <div class="cart-item">
+          <img src="${item.img}">
+          <div class="cart-info">
+            <div class="cart-name">${item.name}</div>
+            <div class="cart-price">${formatVND(item.price)}</div>
+
+            <div class="cart-actions">
+              <button onclick="changeQty(${i}, -1)">-</button>
+              <span>${item.qty}</span>
+              <button onclick="changeQty(${i}, 1)">+</button>
+              <button class="remove" onclick="removeItem(${i})">🗑</button>
+            </div>
+          </div>
+        </div>
+      `;
+
+  }).join("");
+
+  document.getElementById("cart-total").textContent = formatVND(total);
 }
 
-function openCart() {
-  const cart = getCart();
-  if (cart.length === 0) return alert("Giỏ hàng trống!");
+/* ================= TĂNG GIẢM ================= */
+function changeQty(index, delta) {
+  const data = readData();
+  data.cart[index].qty += delta;
 
-  let html = `<h2>Giỏ hàng</h2>`;
-  cart.forEach(it => {
-    html += `<div>${it.name} x${it.qty} — ${formatVND(it.qty * it.price)}</div>`;
-  });
+  if (data.cart[index].qty <= 0) {
+    data.cart.splice(index, 1);
+  }
 
-  const total = cart.reduce((s, i) => s + i.qty * i.price, 0);
-  html += `
-    <hr>
-    <strong>Tổng: ${formatVND(total)}</strong><br><br>
-    <button onclick="window.opener.placeOrder(); window.close();">Gửi order</button>
-    <button onclick="window.opener.clearCart(); window.close();" style="margin-left:10px">Xóa giỏ</button>
-  `;
-
-  const w = window.open('', '_blank', 'width=420,height=680');
-  w.document.write(`<body style="font-family:Inter;padding:16px;">${html}</body>`);
+  saveData(data);
+  renderCart();
 }
-    
+
+/* ================= XOÁ ================= */
+function removeItem(index) {
+  const data = readData();
+  data.cart.splice(index, 1);
+  saveData(data);
+  renderCart();
+}
+
+/* ================= THANH TOÁN ================= */
+function checkout() {
+  const data = readData();
+
+  if (!data.cart || data.cart.length === 0) {
+    alert("Giỏ hàng trống!");
+    return;
+  }
+
+  alert("✅ Thanh toán thành công!");
+  data.cart = [];
+  saveData(data);
+  renderCart();
+}
+
+document.addEventListener("DOMContentLoaded", renderCart);
