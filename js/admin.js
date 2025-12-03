@@ -56,3 +56,4 @@ window.addEventListener('DOMContentLoaded', () => {
     document.body.classList.toggle('sidebar-collapsed');
   });
 });
+

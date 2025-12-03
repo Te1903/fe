@@ -1015,7 +1015,7 @@ body {
     padding: 8px 16px;
     border-radius: 12px;
     margin: 5px;
-    color: white;
+    color: rgb(68, 66, 66);
     cursor: pointer;
     font-size: 14px;
 }
@@ -1067,4 +1067,52 @@ body {
 .admin-main.collapsed {
     margin-left: 70px !important;
     transition: 0.25s ease;
+}
+
+
+.report-date-filter input[type="date"] {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #3b3434;
+    background: rgba(53, 50, 50, 0.8);
+    font-size: 15px;
+    cursor: pointer;
+}
+/* Nút trong sidebar */
+.sidebar a,
+.sidebar .sidebar-btn {
+    display: block;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff !important;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+/* Hover */
+.sidebar a:hover,
+.sidebar .sidebar-btn:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: translateY(-2px);
+}
+
+/* Fix màu tím (do trình duyệt đánh dấu link visited) */
+.sidebar a:visited {
+    color: #fff !important;
+}
+
+/* SIDEBAR ĐÓNG */
+.sidebar {
+    transform: translateX(-220px);
+    transition: 0.3s ease;
+}
+
+/* SIDEBAR MỞ */
+.sidebar.show {
+    transform: translateX(0);
 }

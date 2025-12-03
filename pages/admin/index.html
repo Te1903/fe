@@ -24,25 +24,20 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   </div>
 
   <!-- ACCOUNT DROPDOWN -->
-  <div class="user-right">
-      <button id="userMenuBtn" class="user-avatar">
-          <i class="fa fa-user"></i>
-      </button>
 
-      <div id="userMenu" class="user-menu hide">
-          <a href="account.html">👤 Tài khoản</a>
-          <a href="change-pass.html">🔐 Đổi mật khẩu</a>
-          <a href="../login/index.html">🚪 Đăng xuất</a>
-      </div>
   </div>
 </header>
 
 <aside id="sidebar" class="sidebar">
 <nav>
-    <a class="nav-link" data-page="dashboard.html"> 📊 Doanh thu</a>
-    <a class="nav-link" data-page="menu-list.html"> 🍽 Quản lý thực đơn</a>
-    <a class="nav-link" data-page="staff-list.html">👥 Nhân viên</a>
-    <a class="nav-link" data-page="tables.html">📋 Quản lý bàn</a>
+    <a class="nav-link" data-page="dashboard.html">  Doanh thu</a>
+    <a class="nav-link" data-page="menu-list.html">  Quản lý thực đơn</a>
+    <a class="nav-link" data-page="staff-list.html"> Nhân viên</a>
+    <a class="nav-link" data-page="tables.html"> Quản lý bàn</a>
+    <a href="account.html"> Tài khoản</a>
+    <a href="change-pass.html"> Đổi mật khẩu</a>
+    <a href="../login/index.html"> Đăng xuất</a>
+
 </nav>
 </aside>
 
@@ -61,6 +56,15 @@ btn.addEventListener("click", (e) => {
 
 document.addEventListener("click", () => {
     menu.classList.add("hide");
+});
+</script>
+<script>
+// ========== MỞ / ĐÓNG SIDEBAR ==========
+const hamburger = document.getElementById("hamburger");
+const sidebar = document.getElementById("sidebar");
+
+hamburger.addEventListener("click", () => {
+    sidebar.classList.toggle("show");
 });
 </script>
 

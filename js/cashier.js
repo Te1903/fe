@@ -40,34 +40,34 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ===========================
    MỞ HÓA ĐƠN BÀN
 =========================== */
-window.openBill = function (table) {
-    const data = readData();
-    const popup = document.getElementById("bill-popup");
+function openBill(table) {
+    const items = TEST_BILLS[table] || [];
 
-    const order = data.orders.find(o => o.table == table && !o.paid);
+    const list = document.getElementById("bill-items");
+    list.innerHTML = "";
 
-    document.getElementById("bill-table").textContent = table;
+    let total = 0;
 
-    if (!order) {
-        document.getElementById("bill-items").innerHTML =
-            "<i>Bàn này chưa có đơn hoặc đã thanh toán.</i>";
-        document.getElementById("bill-total").textContent = "0 đ";
-        popup.dataset.total = 0;
-        popup.classList.remove("hide");
-        return;
-    }
+    items.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "bill-row";
 
-    document.getElementById("bill-items").innerHTML = order.items.map(i => `
-        <div>${i.name} x${i.qty} — <b>${formatVND(i.qty * i.price)}</b></div>
-    `).join("");
+        const money = item.qty * item.price;
+        total += money;
 
-    const total = order.items.reduce((s, i) => s + i.qty * i.price, 0);
+        row.innerHTML = `
+            <p>${item.name} × ${item.qty}</p>
+            <span>${money.toLocaleString()} đ</span>
+        `;
 
-    document.getElementById("bill-total").textContent = formatVND(total);
-    popup.dataset.orderId = order.id;
-    popup.dataset.total = total;
-    popup.classList.remove("hide");
-};
+        list.appendChild(row);
+    });
+
+    document.getElementById("bill-total").innerText = total.toLocaleString() + " đ";
+    document.getElementById("bill-table").innerText = table;
+
+    document.getElementById("bill-popup").classList.remove("hide");
+}
 
 /* ===========================
    ĐÓNG POPUP
@@ -79,12 +79,15 @@ window.closeBill = function () {
 /* ===========================
    TÍNH TIỀN THỪA
 =========================== */
-document.getElementById("customer-money")?.addEventListener("input", () => {
-    const val = Number(document.getElementById("customer-money").value);
-    const total = Number(document.getElementById("bill-popup").dataset.total);
+// Tự động tính tiền thừa khi nhập tiền khách đưa
+document.getElementById("customer-money").addEventListener("input", () => {
+    const total = currentBillTotal;  // tổng tiền của bàn → bạn đã có biến này
+    const money = Number(document.getElementById("customer-money").value);
 
-    const change = Math.max(0, val - total);
-    document.getElementById("change-amount").textContent = formatVND(change);
+    let change = money - total;
+    if (change < 0) change = 0;
+
+    document.getElementById("change-amount").textContent = change.toLocaleString() + " đ";
 });
 
 /* ===========================
@@ -125,3 +128,20 @@ document.addEventListener("click", (e) => {
         menuBox.style.display = "none";
     }
 });
+
+// =========================
+// Dữ liệu TEST hóa đơn
+// =========================
+const TEST_BILLS = {
+    1: [
+        { name: "Cà phê sữa", qty: 2, price: 25000 },
+        { name: "Trà đào", qty: 1, price: 30000 }
+    ],
+    5: [
+        { name: "Bánh ngọt", qty: 3, price: 20000 },
+        { name: "Sinh tố xoài", qty: 1, price: 45000 }
+    ],
+    12: [
+        { name: "Hồng trà kem cheese", qty: 2, price: 35000 }
+    ]
+};

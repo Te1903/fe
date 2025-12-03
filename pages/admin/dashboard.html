@@ -7,8 +7,14 @@
         <h2 class="report-title">TỔNG KẾT DOANH THU</h2>
     </div>
     <!-- THÔNG TIN CHUNG -->
+
     <div class="report-section">
         <h3> Báo cáo cuối ngày</h3>
+            <div class="report-date-filter">
+            <label>Chọn ngày:</label>
+            <input type="date" id="reportDate" onchange="loadReportByDate()">
+        </div>
+
 
         <div class="report-grid">
             <div>
@@ -100,6 +106,7 @@
             </div>
         </div>
     </div>
+    
 
 </div>
 <div class="report-page">

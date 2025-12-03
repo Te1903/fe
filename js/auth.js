@@ -22,3 +22,9 @@ function handleLogin() {
 
     alert("Sai tài khoản hoặc mật khẩu!");
 }
+
+const kitchenPass = localStorage.getItem("kitchenPass") || "123";
+
+if (user === "bep" && pass === kitchenPass) {
+    window.location.href = "../kitchen/index.html";
+}

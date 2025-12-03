@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đổi mật khẩu – Khu vực Bếp</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url("https://noithatthanhnien.com/wp-content/uploads/2022/02/photo-1543007631-283050bb3e8c.jpg")
+            center/cover no-repeat fixed;
+            font-family: Arial;
+            color: #fff;
+        }
+
+        .box {
+            width: 380px;
+            margin: 100px auto;
+            background: rgba(0,0,0,0.6);
+            padding: 25px;
+            border-radius: 14px;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        .btn {
+            width: 100%;
+            margin-top: 18px;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            background: #007bff;
+            color: #fff;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .back {
+            margin-top: 10px;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            color: #ddd;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Đổi mật khẩu</h2>
+
+    <input type="password" id="oldPass" placeholder="Mật khẩu hiện tại">
+    <input type="password" id="newPass" placeholder="Mật khẩu mới">
+    <input type="password" id="confirmPass" placeholder="Nhập lại mật khẩu">
+
+    <button class="btn" onclick="changePassword()">Lưu mật khẩu</button>
+
+    <a class="back" href="index.html">← Quay lại</a>
+
+    <p id="msg"></p>
+</div>
+
+<script>
+function changePassword() {
+    let oldP = document.getElementById("oldPass").value.trim();
+    let newP = document.getElementById("newPass").value.trim();
+    let confirm = document.getElementById("confirmPass").value.trim();
+    let msg = document.getElementById("msg");
+
+    // Mật khẩu demo mặc định
+    let currentPass = localStorage.getItem("kitchenPass") || "123";
+
+    if (oldP !== currentPass) {
+        msg.innerHTML = "❌ Sai mật khẩu hiện tại!";
+        msg.style.color = "red";
+        return;
+    }
+    if (newP.length < 3) {
+        msg.innerHTML = "⚠ Mật khẩu mới phải ≥ 3 ký tự!";
+        msg.style.color = "yellow";
+        return;
+    }
+    if (newP !== confirm) {
+        msg.innerHTML = "⚠ Mật khẩu nhập lại không khớp!";
+        msg.style.color = "yellow";
+        return;
+    }
+
+    // Lưu mật khẩu mới
+    localStorage.setItem("kitchenPass", newP);
+
+    msg.innerHTML = "✅ Đổi mật khẩu thành công!";
+    msg.style.color = "lightgreen";
+}
+</script>
+
+</body>
+</html>

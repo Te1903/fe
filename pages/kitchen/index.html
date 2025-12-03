@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bếp • Gu22 Coffee</title>
+    <link rel="stylesheet" href="kitchen.css">
+</head>
+
+<body>
+
+<!-- 3 GẠCH -->
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<!-- SIDEBAR -->
+<div id="sidebar" class="sidebar">
+  <h3>Bếp</h3>
+
+    <a href="../kitchen/change-pass-kitchen.html" class="menu-item">
+        🔐 Đổi mật khẩu
+    </a>
+
+    <a href="#" class="menu-item" onclick="logout()">
+        🚪 Đăng xuất
+    </a>
+</div>
+
+
+
+<div class="kitchen-container">
+    <h2>
+        Khu Vực Bếp - Xử Lý Đơn Hàng
+        
+        
+    </h2>
+      <h2>
+        Danh Sách Các Món Ăn Chờ Chế Biến!
+        
+        
+    </h2>
+
+    <div id="orderList" class="order-grid">
+        <!-- JS render -->
+    </div>
+</div>
+
+<script src="kitchen.js"></script>
+</body>
+</html>
