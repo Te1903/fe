@@ -2,10 +2,10 @@
 const cashierAccount = {
   name: "Huỳnh Kim Cương",
   username: "bep",
-  role: "Thu ngân",
-  email: "thungan01@gmail.com",
-  phone: "0988 123 456",
-  created: "01/12/2025",
+  role: "Bếp ",
+  email: "bep01@gmail.com",
+  phone: "0988 0556 366",
+  created: "30/12/2025",
 };
 
 // Load dữ liệu
