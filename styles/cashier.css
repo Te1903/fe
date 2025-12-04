@@ -227,3 +227,83 @@ h3, p {
 .cashier-menu-box a:hover {
     background: rgba(255, 255, 255, 0.25);
 }
+
+
+/* ================= INPUT NHẬP TIỀN – THU NGÂN ================= */
+
+.bill-box input[type="number"],
+.bill-box input[type="text"] {
+    width: 180px;
+    padding: 10px 14px;
+    border-radius: 14px;                  /* ✅ Bo góc mềm */
+    border: 1.5px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.92);   /* ✅ Nền trắng nổi */
+    color: #111;
+    font-size: 15px;
+    font-weight: 600;
+    outline: none;
+    transition: 0.25s;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+}
+
+/* Placeholder */
+.bill-box input::placeholder {
+    color: #888;
+    font-weight: 500;
+}
+
+/* Khi focus */
+.bill-box input:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 3px rgba(13,110,253,0.35);
+    background: #fff;
+}
+
+/* Label cạnh input */
+.bill-box label {
+    font-weight: 600;
+    margin-right: 8px;
+    color: #fff;
+}
+
+/* Tiền thừa */
+#change-money,
+.bill-change {
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #00e676;
+    text-shadow: 0 0 6px rgba(0,0,0,0.6);
+}
+
+/* ================= SELECT TIỀN MẶT / CHUYỂN KHOẢN ================= */
+
+.payment-method {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 14px;                 /* ✅ Bo góc */
+    border: 1.5px solid rgba(255,255,255,0.45);
+    background: rgba(255,255,255,0.95);  /* ✅ Nền trắng nổi */
+    color: #111;
+    font-size: 15px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+    transition: 0.25s;
+    margin-bottom: 10px;
+}
+
+/* Khi focus */
+.payment-method:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 3px rgba(13,110,253,0.35);
+    background: #fff;
+}
+
+/* Option bên trong */
+.payment-method option {
+    background: #fff;
+    color: #111;
+    font-weight: 600;
+}
